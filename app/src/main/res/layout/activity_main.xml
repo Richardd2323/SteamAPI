@@ -5,17 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context=".MainActivity">
     <ListView
         android:id="@+id/listaJogos"
         android:layout_width="match_parent"
-        android:layout_height="400px"></ListView>
+        android:layout_height="600px"
+        android:background="@color/otherBlack"
+        ></ListView>
     <TextView
         android:id="@+id/tituloJogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_gravity="center"
+        android:text="Titulo Jogo"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -45,12 +50,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preço Inicial:"></TextView>
+                android:text="Preço Inicial:"
+                android:textSize="15sp"
+                android:textColor="@color/white"></TextView>
             <TextView
                 android:id="@+id/precoInicial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"></TextView>
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="R$ 0,00"></TextView>
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -63,12 +72,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/white"
                 android:text="Preço Final:"></TextView>
             <TextView
                 android:id="@+id/precoFinal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"></TextView>
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="R$ 0,00"></TextView>
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,16 +94,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/white"
                 android:text="Desconto atribuido:"></TextView>
             <TextView
                 android:id="@+id/desconto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"></TextView>
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:text="0%"></TextView>
         </LinearLayout>
     </LinearLayout>
     <TextView
         android:id="@+id/comprarJogo"
+        android:text="Link para loja"
+        android:textSize="15sp"
+        android:textColor="@color/blue"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
 </LinearLayout>

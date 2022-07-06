@@ -1,5 +1,6 @@
 package br.richard.api
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -25,26 +26,30 @@ class MainActivity : AppCompatActivity() {
         //57690
         val listaJogos = findViewById<ListView>(R.id.listaJogos)
         var jogosAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1)
-        jogosAdapter.add("1151340")
-        jogosAdapter.add("22380")
-        jogosAdapter.add("377160")
-        jogosAdapter.add("1850570")
+        jogosAdapter.add("Cyberpunk 2077:1091500")
+        jogosAdapter.add("Sekiro:814380")
+        jogosAdapter.add("Elden Ring:1245620")
+        jogosAdapter.add("Dark Souls:570940")
+        jogosAdapter.add("Fallout 76:1151340")
+        jogosAdapter.add("Fallout New Vegas:22380")
+        jogosAdapter.add("Fallout 4:377160")
+        jogosAdapter.add("Death Strange:1850570")
         listaJogos.adapter = jogosAdapter
         listaJogos.onItemClickListener = AdapterView.OnItemClickListener{
             parent,view,position,id ->
             val item = parent.getItemAtPosition(position)
-            val saidaTituloJogo = findViewById<TextView>(R.id.tituloJogo)
-            saidaTituloJogo.text = item.toString()
-            buscaCotacao(item.toString())
+
+            var formata = item.toString().split(":")
+
+            buscaCotacao(formata[1])
         }
 
     }
 
     fun buscaCotacao(codigo : String){
         GlobalScope.async{
-            API_URL = BASE_URL
-            API_URL += codigo
-            val resposta = URL(API_URL).readText()
+
+            val resposta = URL(API_URL+codigo).readText()
 
             var tituloJogo = JSONObject(resposta).getJSONObject(codigo).getJSONObject("data").getString("name")
             var precoFinalJogo = JSONObject(resposta).getJSONObject(codigo).getJSONObject("data").getJSONObject("price_overview").getString("final_formatted")
@@ -66,7 +71,19 @@ class MainActivity : AppCompatActivity() {
             saidaPrecoInicialJogo.setText(precoInicioJogo)
             saidaPrecoFinalJogo.setText(precoFinalJogo)
             saidaDescontoJogo.setText("${desconto.toString()}%")
-            saidaComprarJogo.setText("${COMPRA_URL}${codigo}")
+            if(desconto >= 50){
+                saidaDescontoJogo.setTextColor(Color.parseColor("#2bd738"))
+                saidaPrecoFinalJogo.setTextColor(Color.parseColor("#2bd738"))
+                saidaComprarJogo.setText("${COMPRA_URL}${codigo}")
+                saidaComprarJogo.setTextColor(Color.parseColor("#7289DA"))
+            }else{
+                saidaPrecoFinalJogo.setTextColor(Color.parseColor("#e12020"))
+                saidaDescontoJogo.setTextColor(Color.parseColor("#e12020"))
+                saidaComprarJogo.setText("Não é recomendado comprar esse jogo no momento!!!")
+                saidaComprarJogo.setTextColor(Color.parseColor("#e12020"))
+            }
+
+
 
 
         }
